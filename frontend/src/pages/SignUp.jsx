@@ -37,7 +37,7 @@ export default function SingUp() {
           </div>
         )}
         <form onSubmit={handleSubmit} className="space-y-4">
-          <label> Name</label>
+          
           <input
             type="name"
             name="name"
@@ -47,7 +47,7 @@ export default function SingUp() {
             className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             required
           />
-            <label htmlFor="">Email</label>
+           
           <input
             name="email"
             type="email"
@@ -57,7 +57,7 @@ export default function SingUp() {
             className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             required
           />
-          <label htmlFor="">Password</label>
+          
           <input
             type="password"
             name="password"
