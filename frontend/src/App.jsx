@@ -2,8 +2,9 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import ProductDetail from "./pages/ProductDetail";
-import SignUp from "./pages/SignUp"
-import AddProduct from "./admin/AddProduct"
+import SignUp from "./pages/SignUp";
+
+import AddProduct from "./admin/AddProductTemp";
 import EditProduct from "./admin/EditProduct";
 import ProductList from "./admin/ProductList";
 
@@ -18,8 +19,8 @@ const router = createBrowserRouter([
   { path: "/admin/products/edit/:id", element: <EditProduct /> },
 ]);
 
- function App() {
+function App() {
   return <RouterProvider router={router} />;
 }
 
-export default  App
+export default App;

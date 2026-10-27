@@ -60,7 +60,7 @@ const ProductList = () => {
 
               <td className="border border-gray-200 px-4 py-2">
                 <Link
-                  to={`/admin/products/update/${product._id}`}
+                  to={`/admin/products/edit/${product._id}`}
                   className="text-blue-400 p-2 hover:underline"
                 >
                   Edit

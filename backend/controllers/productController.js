@@ -1,71 +1,71 @@
-const Product = require("../models/product")
+const Product = require("../models/product");
 
-
-const createProduct = async (req,res) => {
-
+const createProduct = async (req, res) => {
   try {
-    const product = await Product.create(req.body)
+    const product = await Product.create(req.body);
     res.json({
-      message : "product created sucessfully",
-      product
-    })
-    
+      message: "product created sucessfully",
+      product,
+    });
   } catch (error) {
     res.status(500).json({
-      message : "internal server error",
-      error
-    })
+      message: "internal server error",
+      error,
+    });
   }
-}
+};
 
-const getproducts = async (req,res) => {
+const getproducts = async (req, res) => {
   try {
-    const products  = await Product.find().sort({createdAt : -1})
-    res.json(products)
+    const { search, catagory } = req.query;
+    let filter = {};
+    if (search) {
+      filter.title = { $regex: search, $options: "i" };
+    }
+    if (catagory) {
+      filter.catagory = catagory;
+    }
+    const products = await Product.find(filter).sort({ createdAt: -1 });
+    res.status(200).json(products);
   } catch (error) {
     res.status(500).json({
-      message : "cannot find product"
-    })
+      message: "cannot find product",
+    });
   }
-}
+};
 
-
-const updateProduct = async (req,res) => {
+const updateProduct = async (req, res) => {
   try {
-    const update = await Product.findByIdAndUpdate(
-      req.params.id,
-      req.body,
-      {new : true}
-    )
+    const update = await Product.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+    });
     res.json({
-      message : "product updated sucessfully",
-      update
-    })
+      message: "product updated sucessfully",
+      update,
+    });
   } catch (error) {
     res.status(500).json({
-      message : "server error"
-    })
+      message: "server error",
+    });
   }
-}
+};
 
-const deleteProduct = async (req , res) => {
+const deleteProduct = async (req, res) => {
   try {
-    await Product.findByIdAndDelete(req.params.id)
+    await Product.findByIdAndDelete(req.params.id);
     res.json({
-      message : "product deleted sucessfully"
-    })
+      message: "product deleted sucessfully",
+    });
   } catch (error) {
     res.status(500).json({
-      message : "server error"
-    })
+      message: "server error",
+    });
   }
-}
-
-
+};
 
 module.exports = {
   createProduct,
   getproducts,
   updateProduct,
-  deleteProduct
-}
+  deleteProduct,
+};
