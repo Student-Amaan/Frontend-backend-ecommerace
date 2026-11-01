@@ -20,15 +20,18 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await api.post("/auth/login",form)
-      localStorage.setItem("token", res.data.token)
-      setMsg("Login Successfully")
+      const res = await api.post("/auth/login", form);
+      console.log('login', res.data)
+      localStorage.setItem("token", res.data.token);
+      localStorage.setItem("userId", res.data.users.id);
+      setMsg("Login Successfully");
 
       setTimeout(() => {
-        navigate('/')
+        navigate("/");
       }, 1000);
     } catch (error) {
-      setForm(error.response?.data?.message || "An error occure")
+      console.log(error)
+      setMsg(error.response?.data?.message || "An error occure");
     }
   };
   return (
@@ -42,8 +45,6 @@ const Login = () => {
         )}
 
         <form onSubmit={handleSubmit} className="space-y-4">
-          
-
           <input
             name="email"
             type="email"
@@ -67,7 +68,7 @@ const Login = () => {
             type="submit"
             className="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition-colors"
           >
-           Login
+            Login
           </button>
         </form>
       </div>

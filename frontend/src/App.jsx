@@ -1,4 +1,4 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import ProductDetail from "./pages/ProductDetail";
@@ -7,16 +7,34 @@ import SignUp from "./pages/SignUp";
 import AddProduct from "./admin/AddProductTemp";
 import EditProduct from "./admin/EditProduct";
 import ProductList from "./admin/ProductList";
+import Navbar from "./components/Navbar";
+import Cart from "./pages/Cart"
+
+function Layout() {
+  return (
+    <>
+      <Navbar />
+      <Outlet />
+    </>
+  );
+}
 
 const router = createBrowserRouter([
-  { path: "/", element: <Home /> },
-  { path: "/login", element: <Login /> },
-  { path: "/signup", element: <SignUp /> },
-  { path: "/product/:id", element: <ProductDetail /> },
+  {
+    element: <Layout />,
+    children: [
+      { path: "/", element: <Home /> },
+      { path: "/login", element: <Login /> },
+      { path: "/signup", element: <SignUp /> },
+      { path: "/product/:id", element: <ProductDetail /> },
 
-  { path: "/admin/products", element: <ProductList /> },
-  { path: "/admin/products/add", element: <AddProduct /> },
-  { path: "/admin/products/edit/:id", element: <EditProduct /> },
+      { path: "/cart", element: <Cart /> },
+
+      { path: "/admin/products", element: <ProductList /> },
+      { path: "/admin/products/add", element: <AddProduct /> },
+      { path: "/admin/products/edit/:id", element: <EditProduct /> },
+    ],
+  },
 ]);
 
 function App() {

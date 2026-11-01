@@ -12,7 +12,7 @@ const addToCart = async (req , res) => {
     if (item) {
       item.quantity += 1;
     } else {
-      cart.items.push({ productId, quantity: 1 });
+      cartDoc.items.push({ productId, quantity: 1 });
     }
   }
     await cartDoc.save();
