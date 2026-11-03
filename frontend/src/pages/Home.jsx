@@ -11,7 +11,7 @@ const Home = () => {
 
   const loadProduct = async () => {
     const res = await api.get(
-      `/products?search=${search}&catagory${catagory}`
+      `/products?search=${search}&catagory=${catagory}`
     );
     setProducts(res.data);
   };
@@ -105,7 +105,7 @@ const Home = () => {
             <input
               placeholder="Search Products..."
               value={search}
-              onChange={(e) => setSearch(e.target.name)}
+              onChange={(e) => setSearch(e.target.value)}
               className="w-full sm:w-64 border border-gray-300 bg-white px-4 py-3 rounded-xl outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition shadow-sm"
             />
 
